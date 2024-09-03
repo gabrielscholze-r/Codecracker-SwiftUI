@@ -2,52 +2,31 @@
 //  ContentView.swift
 //  codecracker
 //
-//  Created by user264588 on 8/31/24.
+//  Created by Gabriel Scholze on 8/31/24.
 //
 import SwiftUI
 
 struct ContentView: View {
-    @State var languages: [Language] = []
-    
+    @StateObject var languageManager = LanguageManager()
     
     
     var body: some View {
         VStack{
-            
             NavigationStack {
                 List {
-                    ForEach(languages) { language in
+                    ForEach(languageManager.languages) { language in
                         NavigationLink(value: language) {
                             Text(language.name)
                             
                         }
                     }
                 }.navigationDestination(for:Language.self){item in
-                    LanguageTrivia(language: item)
+                    LanguageTrivia(language: item, lm:languageManager)
                 }.navigationTitle("CODECRACKER")
                 .navigationBarTitleDisplayMode(.inline)
                 
             }
             
-        }.onAppear{
-            loadJson()
-        }
-    }
-    
-    func loadJson(){
-        if let path = Bundle.main.url(forResource: "data.json", withExtension: nil) {
-            
-            do{
-                
-                let data = try Data(contentsOf: path)
-                
-                let jsonLanguages = try JSONDecoder().decode([Language].self, from: data)
-                self.languages = jsonLanguages
-                
-            }catch{
-                
-                print("Error!! Unable to parse data.json \(error.localizedDescription)")
-            }
         }
     }
 }

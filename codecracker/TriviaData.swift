@@ -2,7 +2,7 @@
 //  Question.swift
 //  codecracker
 //
-//  Created by user264588 on 8/31/24.
+//  Created by Gabriel Scholze on 8/31/24.
 //
 import SwiftUI
 
@@ -25,3 +25,7 @@ struct Option: Codable,Hashable,Equatable {
     var option: String
 }
 
+struct UserScores: Codable{
+    var java: Double
+    var cpp: Double
+}
