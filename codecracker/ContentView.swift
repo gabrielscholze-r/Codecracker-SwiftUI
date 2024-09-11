@@ -17,7 +17,6 @@ struct ContentView: View {
                     ForEach(languageManager.languages) { language in
                         NavigationLink(value: language) {
                             Text(language.name)
-                            
                         }
                     }
                 }.navigationDestination(for:Language.self){item in
