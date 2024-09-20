@@ -26,8 +26,17 @@ struct LanguageTrivia: View {
                 VStack {
                     Text(q.question)
                     ForEach(q.options, id: \.self) { opt in
-                        Text(opt.option)
-                            
+                        Button(action: {}){                          Text(opt.option)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(.indigo)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                        }.padding(50)
+
+                        
+                        
                         
                         
                     }
