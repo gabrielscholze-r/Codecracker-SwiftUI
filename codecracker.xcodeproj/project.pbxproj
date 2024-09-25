@@ -14,6 +14,8 @@
 		D047694E2C83388500C96429 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D047694D2C83388500C96429 /* Preview Assets.xcassets */; };
 		D04769572C834C5500C96429 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = D04769562C834C5500C96429 /* data.json */; };
 		D047695B2C83687B00C96429 /* TriviaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D047695A2C83687B00C96429 /* TriviaData.swift */; };
+		D04D35562CA354BF00DC40AC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D35552CA354BF00DC40AC /* DataController.swift */; };
+		D0A93D922C9F1188007CA2BB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0A93D902C9F1188007CA2BB /* Model.xcdatamodeld */; };
 		D0B252782C853C0100CE9806 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = D0B252772C853C0100CE9806 /* UserData.json */; };
 		D0B2527C2C853F4200CE9806 /* LanguageTrivia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2527B2C853F4200CE9806 /* LanguageTrivia.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +29,8 @@
 		D047694D2C83388500C96429 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D04769562C834C5500C96429 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = ../../data.json; sourceTree = "<group>"; };
 		D047695A2C83687B00C96429 /* TriviaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaData.swift; sourceTree = "<group>"; };
+		D04D35552CA354BF00DC40AC /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		D0A93D912C9F1188007CA2BB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D0B252772C853C0100CE9806 /* UserData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
 		D0B2527B2C853F4200CE9806 /* LanguageTrivia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTrivia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +68,8 @@
 				D04769462C83388400C96429 /* codecrackerApp.swift */,
 				D0B252772C853C0100CE9806 /* UserData.json */,
 				D04769562C834C5500C96429 /* data.json */,
+				D0A93D902C9F1188007CA2BB /* Model.xcdatamodeld */,
+				D04D35552CA354BF00DC40AC /* DataController.swift */,
 				D047695A2C83687B00C96429 /* TriviaData.swift */,
 				D0B2527B2C853F4200CE9806 /* LanguageTrivia.swift */,
 				D04769482C83388400C96429 /* ContentView.swift */,
@@ -154,11 +160,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04D35562CA354BF00DC40AC /* DataController.swift in Sources */,
 				D0B2527C2C853F4200CE9806 /* LanguageTrivia.swift in Sources */,
 				D04769492C83388400C96429 /* ContentView.swift in Sources */,
 				D03E2BC32C867A13008A433C /* LanguageManager.swift in Sources */,
 				D047695B2C83687B00C96429 /* TriviaData.swift in Sources */,
 				D04769472C83388400C96429 /* codecrackerApp.swift in Sources */,
+				D0A93D922C9F1188007CA2BB /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +370,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D0A93D902C9F1188007CA2BB /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0A93D912C9F1188007CA2BB /* Model.xcdatamodel */,
+			);
+			currentVersion = D0A93D912C9F1188007CA2BB /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = /Users/user264588/Desktop/codecracker/codecracker/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D047693B2C83388400C96429 /* Project object */;
 }
