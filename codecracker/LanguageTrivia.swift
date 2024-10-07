@@ -10,63 +10,107 @@ import SwiftUI
 struct LanguageTrivia: View {
     var language: Language
     var userScores: UserScores
-    @State var progressBarValue: Double = 1.0
-    var filteredList : [Question] {
-        let questionsArray=language.questions?.allObjects as! [Question]
-        return questionsArray.filter {$0.id >= Int32(Int(progressBarValue))}
+    @Environment(\.managedObjectContext) var moc
+    @State var currentQuestionIndex: Int = 1
+    
+    var filteredQuestions: [Question] {
+        let questionsArray = language.questions?.allObjects as! [Question]
+        return questionsArray.sorted { $0.id < $1.id }
     }
+    
+    var currentQuestion: Question? {
+        guard currentQuestionIndex < filteredQuestions.count else { return nil }
+        return filteredQuestions[currentQuestionIndex]
+    }
+    
     var body: some View {
         VStack {
-            Text(language.name!)
-                .font(.title)
-                .fontWeight(.bold)
-            ProgressView("Score", value:progressBarValue,total: 15)
-                .padding(.horizontal,64)
-            Spacer()
-            ForEach(filteredList) { (q: Question) in
-                VStack {
-                    Text(q.question!)
-                        .padding()
-                    ForEach(q.options!.allObjects as! [Option], id: \.self) { opt in
-                        Button(action: {
-                            if (opt.answer){
-                                
-                            }
-                        }){                          Text(opt.option!)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(.indigo)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .foregroundStyle(.white)
-                                .fontWeight(.bold)
-                        }.padding(.horizontal)
-
-                        
-                        
-                        
-                        
-                    }
-                }
-            }
-            Spacer()
-        }.onAppear(
-            perform: {
-                switch language.name {
-                case "C":
-                    self.progressBarValue=Double(userScores.c)
-                case "Java":
-                    self.progressBarValue=Double(userScores.java)
-                default:
-                    print()
-                }
-                print(filteredList)
+            if let question = currentQuestion {
+                Text(language.name!)
+                    .font(.title)
+                    .fontWeight(.bold)
                 
+                ProgressView("Score", value: Double(currentQuestionIndex), total: Double(filteredQuestions.count))
+                    .padding(.horizontal, 64)
+                
+                Spacer()
+                
+                Text(question.question!)
+                    .padding()
+                
+                ForEach(question.options?.allObjects as! [Option], id: \.self) { opt in
+                    Button(action: {
+                        handleAnswer(opt.answer) // Verifica se a resposta está correta
+                    }) {
+                        Text(opt.option!)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(.indigo)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                    }
+                    .padding(.horizontal)
+                }
+                
+                Spacer()
+            } else {
+                Text("Congratulations! You've completed all questions for \(language.name!)")
+                    .font(.headline)
             }
-            
-        )
+        }
         .padding()
-        
+        .onAppear(
+            perform: loadInitialScore
+        )
+    }
+    
+    func loadInitialScore() {
+        print("c: \(userScores.c)")
+        print("java: \(userScores.java)")
+        print("python: \(userScores.python)")
+        print("js: \(userScores.javascript)")
+        switch language.name {
+        case "C":
+            currentQuestionIndex = Int(userScores.c)
+        case "Java":
+            currentQuestionIndex = Int(userScores.java)
+        case "Python":
+            currentQuestionIndex = Int(userScores.python)
+        case "JavaScript":
+            currentQuestionIndex = Int(userScores.javascript)
+        default:
+            currentQuestionIndex = 1
+            
+            
+        }
+    }
+    
+    func handleAnswer(_ isCorrect: Bool) {
+        if isCorrect {
+            currentQuestionIndex += 1
+            updateUserScores()
+            try? moc.save()
+        }
+    }
+    
+    func updateUserScores() {
+        switch language.name {
+        case "C":
+            userScores.c = Int32(currentQuestionIndex)
+        case "Java":
+            userScores.java = Int32(currentQuestionIndex)
+        case "Python":
+            userScores.python = Int32(currentQuestionIndex)
+        case "JavaScript":
+            userScores.javascript = Int32(currentQuestionIndex)
+            
+            
+        default:
+            break
+        }
     }
 }
+
 
 

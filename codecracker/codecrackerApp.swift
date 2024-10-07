@@ -16,6 +16,9 @@ struct codecrackerApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear {
+                    print(URL.documentsDirectory)
+                }
         }
     }
 }

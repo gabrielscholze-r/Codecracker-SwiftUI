@@ -17,5 +17,7 @@
     <entity name="UserScores" representedClassName="UserScores" syncable="YES" codeGenerationType="class">
         <attribute name="c" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="java" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="javascript" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="python" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
 </model>
