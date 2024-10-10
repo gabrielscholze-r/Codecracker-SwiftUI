@@ -10,6 +10,7 @@ import SwiftUI
 struct LanguageTrivia: View {
     var language: Language
     var userScores: UserScores
+    @State private var showInfoPopover: Bool = false
     @Environment(\.managedObjectContext) var moc
     @State var currentQuestionIndex: Int = 1
     
@@ -29,6 +30,24 @@ struct LanguageTrivia: View {
                 Text(language.name!)
                     .font(.title)
                     .fontWeight(.bold)
+                
+                Image(systemName: "info.circle.fill")
+                    .foregroundStyle(.indigo)
+                    .onTapGesture {
+                        showInfoPopover.toggle()
+                    }
+                    .popover(isPresented: $showInfoPopover) {
+                        VStack {
+                            Text(language.info ?? "No information available")
+                                .padding()
+                                .multilineTextAlignment(.leading)
+                            
+                            Button("Close") {
+                                showInfoPopover = false
+                            }
+                            .padding()
+                        }
+                    }
                 
                 ProgressView("Score", value: Double(currentQuestionIndex), total: Double(filteredQuestions.count))
                     .padding(.horizontal, 64)
@@ -66,10 +85,6 @@ struct LanguageTrivia: View {
     }
     
     func loadInitialScore() {
-        print("c: \(userScores.c)")
-        print("java: \(userScores.java)")
-        print("python: \(userScores.python)")
-        print("js: \(userScores.javascript)")
         switch language.name {
         case "C":
             currentQuestionIndex = Int(userScores.c)
