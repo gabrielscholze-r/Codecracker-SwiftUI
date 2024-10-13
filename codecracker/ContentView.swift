@@ -2,35 +2,29 @@ import SwiftUI
 import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var language: FetchedResults<Language>
+    @FetchRequest(entity: Language.entity(),sortDescriptors: []) var language: FetchedResults<Language>
     @FetchRequest(entity: UserScores.entity(), sortDescriptors: []) var scores: FetchedResults<UserScores>
     
     
     var body: some View {
-        VStack {
-            NavigationStack {
-                List {
-                    ForEach(language, id: \.self) { l in
-                        NavigationLink(value: l) {
-                            Text(l.name ?? "Unknown Language")
-                        }
-                    }
+        TabView {
+            HomePage(language: Array(language), scores: Array(scores))
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-                .navigationDestination(for: Language.self) { item in
-                    if let userScore = scores.first {
-                        LanguageTrivia(language: item, userScores: userScore)
-                    } else {
-                        
-                        Text("No scores available")
-                    }
+                .tag(1)
+            
+            Profile()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle.fill")
                 }
-                .navigationTitle("CODECRACKER")
-                .navigationBarTitleDisplayMode(.inline)
-            }
+                .tag(2)
+            
         }
+        .navigationTitle("CODECRACKER")
+        .navigationBarTitleDisplayMode(.large)
         .onAppear {
-           // deleteAllData()
-            if scores.isEmpty{
+            if scores.isEmpty {
                 addInitialScores()
                 try? moc.save()
             }
@@ -39,6 +33,7 @@ struct ContentView: View {
                 try? moc.save()
             }
         }
+        
     }
     func addInitialScores() {
         if scores.isEmpty {

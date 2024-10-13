@@ -59,7 +59,7 @@ struct LanguageTrivia: View {
                 
                 ForEach(question.options?.allObjects as! [Option], id: \.self) { opt in
                     Button(action: {
-                        handleAnswer(opt.answer) // Verifica se a resposta está correta
+                        handleAnswer(opt.answer)
                     }) {
                         Text(opt.option!)
                             .padding()

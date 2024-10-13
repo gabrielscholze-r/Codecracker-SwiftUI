@@ -2,7 +2,7 @@
 //  DataController.swift
 //  codecracker
 //
-//  Created by user264588 on 9/24/24.
+//  Created by Gabriel Scholze on 9/24/24.
 //
 
 import Foundation
