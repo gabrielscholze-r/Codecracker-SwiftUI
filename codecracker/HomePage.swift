@@ -4,6 +4,8 @@
 //
 //  Created by Gabriel Scholze on 10/12/24.
 //
+
+import MapKit
 import CoreData
 import SwiftUI
 
@@ -22,9 +24,13 @@ struct HomePage: View {
                         }
                     }
                 }
-                .navigationDestination(for: Language.self) { item in
+                .navigationDestination(for: Language.self) { language in
                     if let userScore = scores.first {
-                        LanguageTrivia(language: item, userScores: userScore)
+                        let initialPosition = MapCameraPosition.region(MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: language.latitude, longitude: language.longitude),
+                            span: MKCoordinateSpan(latitudeDelta:3, longitudeDelta:3)
+                        ))
+                        LanguageTrivia(language: language, userScores: userScore, position: initialPosition)
                     } else {
                         
                         Text("No scores available")

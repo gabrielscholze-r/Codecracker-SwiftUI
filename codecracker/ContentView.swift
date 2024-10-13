@@ -24,6 +24,7 @@ struct ContentView: View {
         .navigationTitle("CODECRACKER")
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
+            //deleteAllData()
             if scores.isEmpty {
                 addInitialScores()
                 try? moc.save()
@@ -41,6 +42,8 @@ struct ContentView: View {
             
             userScore.c = 1
             userScore.java = 1
+            userScore.javascript = 1
+            userScore.python = 1
             try? moc.save()
         }
     }
@@ -66,22 +69,33 @@ struct ContentView: View {
         let languageC = Language(context: moc)
         languageC.id = Int32(1)
         languageC.name = "C"
-        languageC.info = "C é uma linguagem de programação de baixo nível, altamente eficiente e poderosa. Ela é frequentemente usada em aplicações onde o controle sobre o hardware e o desempenho são cruciais, como no desenvolvimento de sistemas operacionais (Linux, por exemplo), drivers de dispositivos e software embarcado. C oferece acesso direto à memória e aos recursos do sistema, o que a torna a escolha ideal para sistemas embarcados e computação de alto desempenho. Além disso, muitas linguagens modernas, como C++ e Java, foram fortemente influenciadas por C, que continua sendo uma linguagem fundamental na engenharia de software"
+        languageC.info = "Created in New Jersey (USA) in 1972, C is a low-level programming language that is highly efficient and powerful. It is often used in applications where control over hardware and performance are crucial, such as in the development of operating systems (Linux, for example), device drivers, and embedded software. C provides direct access to memory and system resources, making it the ideal choice for embedded systems and high-performance computing. Additionally, many modern languages, such as C++ and Java, have been heavily influenced by C, which remains a fundamental language in software engineering."
+        languageC.latitude = 40.2206
+        languageC.longitude = -74.7699
         
         let languageJava = Language(context: moc)
         languageJava.id = Int32(2)
         languageJava.name = "Java"
-        languageJava.info="Java é uma linguagem de programação orientada a objetos, conhecida por sua portabilidade e confiabilidade em grandes sistemas. Utilizando a JVM (Java Virtual Machine), ela pode ser executada em qualquer plataforma, o que a torna uma escolha popular para aplicações corporativas de grande escala. Java é amplamente usada no desenvolvimento de aplicativos Android, além de ser empregada na construção de servidores web robustos, utilizando frameworks como Spring. Também é comum em sistemas bancários, telecomunicações, e na construção de aplicações distribuídas"
+        languageJava.info="Created in California (USA) in 1995, Java is an object-oriented programming language known for its portability and reliability in large systems. Utilizing the JVM (Java Virtual Machine), it can be executed on any platform, making it a popular choice for large-scale enterprise applications. Java is widely used in the development of Android applications, as well as in building robust web servers using frameworks like Spring. It is also common in banking systems, telecommunications, and in the construction of distributed applications."
+        languageJava.latitude = 36.7783
+        languageJava.longitude = -119.4179
+
         
         let languageJavaScript = Language(context: moc)
         languageJavaScript.id = Int32(3)
         languageJavaScript.name = "JavaScript"
-        languageJavaScript.info="JavaScript é uma linguagem amplamente utilizada no desenvolvimento web, tanto no front-end quanto no back-end. Ela permite adicionar interatividade a páginas web, sendo uma das tecnologias principais, junto com HTML e CSS, para criação de interfaces dinâmicas. Além disso, com o advento do Node.js, JavaScript também é usado no desenvolvimento de servidores, APIs e microsserviços. Outras áreas de aplicação incluem o desenvolvimento de aplicativos móveis com frameworks como React Native e a criação de aplicativos web modernos com Angular, React e Vue.js."
+        languageJavaScript.info="Created in California (USA) in 1995, JavaScript is a programming language widely used in web development, both on the front-end and back-end. It allows for the addition of interactivity to web pages and is one of the main technologies, along with HTML and CSS, for creating dynamic interfaces. Furthermore, with the advent of Node.js, JavaScript is also used in the development of servers, APIs, and microservices. Other areas of application include mobile app development with frameworks like React Native and the creation of modern web applications using Angular, React, and Vue.js."
+        languageJavaScript.latitude = 36.7783
+        languageJavaScript.longitude = -119.4179
+
         
         let languagePython = Language(context: moc)
         languagePython.id = Int32(4)
         languagePython.name = "Python"
-        languagePython.info = "Python é uma linguagem de programação versátil, fácil de aprender e muito utilizada em diversas áreas. Sua sintaxe simples e clara a torna ideal para iniciantes, mas sua potência atrai desenvolvedores experientes para aplicações avançadas. É a linguagem preferida para ciência de dados, inteligência artificial e machine learning, com bibliotecas como Pandas, TensorFlow e NumPy. Python também é amplamente usada em automação de tarefas, scripts, desenvolvimento web com frameworks como Django e Flask, além de análise de dados e prototipagem rápida"
+        languagePython.info = "Created in 1992 in Amsterdam (Netherlands), Python is a versatile programming language that is easy to learn and widely used in various fields. Its simple and clear syntax makes it ideal for beginners, while its power attracts experienced developers for advanced applications. It is the preferred language for data science, artificial intelligence, and machine learning, with libraries like Pandas, TensorFlow, and NumPy. Python is also widely used for task automation, scripting, web development with frameworks like Django and Flask, as well as data analysis and rapid prototyping."
+        languagePython.latitude = 52.3676
+        languagePython.longitude = 4.9041
+
         
         let cQuestions = [
             ("What is the correct syntax for a main function in C?", [

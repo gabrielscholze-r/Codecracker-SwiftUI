@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D03E2BC32C867A13008A433C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E2BC22C867A13008A433C /* LanguageManager.swift */; };
 		D04769472C83388400C96429 /* codecrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04769462C83388400C96429 /* codecrackerApp.swift */; };
 		D04769492C83388400C96429 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04769482C83388400C96429 /* ContentView.swift */; };
 		D047694B2C83388500C96429 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D047694A2C83388500C96429 /* Assets.xcassets */; };
@@ -23,7 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D03E2BC22C867A13008A433C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		D04769432C83388400C96429 /* codecracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codecracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04769462C83388400C96429 /* codecrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codecrackerApp.swift; sourceTree = "<group>"; };
 		D04769482C83388400C96429 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				D0FEAA232CBB7493000BBDEF /* ScoreRow.swift */,
 				D04769482C83388400C96429 /* ContentView.swift */,
 				D0FEAA212CBB3689000BBDEF /* HomePage.swift */,
-				D03E2BC22C867A13008A433C /* LanguageManager.swift */,
 				D047694A2C83388500C96429 /* Assets.xcassets */,
 				D047694C2C83388500C96429 /* Preview Content */,
 			);
@@ -172,7 +169,6 @@
 				D0B2527C2C853F4200CE9806 /* LanguageTrivia.swift in Sources */,
 				D04769492C83388400C96429 /* ContentView.swift in Sources */,
 				D0FEAA242CBB7493000BBDEF /* ScoreRow.swift in Sources */,
-				D03E2BC32C867A13008A433C /* LanguageManager.swift in Sources */,
 				D04769472C83388400C96429 /* codecrackerApp.swift in Sources */,
 				D0A93D922C9F1188007CA2BB /* Model.xcdatamodeld in Sources */,
 			);

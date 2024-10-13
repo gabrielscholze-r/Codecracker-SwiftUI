@@ -5,6 +5,7 @@
 //  Created by Gabriel Scholze on 9/1/24.
 //
 
+import MapKit
 import SwiftUI
 
 struct LanguageTrivia: View {
@@ -13,6 +14,8 @@ struct LanguageTrivia: View {
     @State private var showInfoPopover: Bool = false
     @Environment(\.managedObjectContext) var moc
     @State var currentQuestionIndex: Int = 1
+    
+    @State var position: MapCameraPosition
     
     var filteredQuestions: [Question] {
         let questionsArray = language.questions?.allObjects as! [Question]
@@ -41,7 +44,8 @@ struct LanguageTrivia: View {
                             Text(language.info ?? "No information available")
                                 .padding()
                                 .multilineTextAlignment(.leading)
-                            
+                                .font(.caption)
+                            Map(initialPosition: position.self)
                             Button("Close") {
                                 showInfoPopover = false
                             }
@@ -79,11 +83,11 @@ struct LanguageTrivia: View {
             }
         }
         .padding()
-        .onAppear(
-            perform: loadInitialScore
-        )
+        .onAppear{
+            loadInitialScore()
+        }
     }
-    
+
     func loadInitialScore() {
         switch language.name {
         case "C":
