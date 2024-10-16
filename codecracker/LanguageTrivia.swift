@@ -1,10 +1,3 @@
-//
-//  LanguageTrivia.swift
-//  codecracker
-//
-//  Created by Gabriel Scholze on 9/1/24.
-//
-
 import MapKit
 import SwiftUI
 
@@ -14,8 +7,9 @@ struct LanguageTrivia: View {
     @State private var showInfoPopover: Bool = false
     @Environment(\.managedObjectContext) var moc
     @State var currentQuestionIndex: Int = 1
-    
     @State var position: MapCameraPosition
+    @State private var selectedAnswer: Option? = nil
+    @State private var isAnswerCorrect: Bool? = nil
     
     var filteredQuestions: [Question] {
         let questionsArray = language.questions?.allObjects as! [Question]
@@ -63,17 +57,18 @@ struct LanguageTrivia: View {
                 
                 ForEach(question.options?.allObjects as! [Option], id: \.self) { opt in
                     Button(action: {
-                        handleAnswer(opt.answer)
+                        handleAnswer(opt)
                     }) {
                         Text(opt.option!)
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(.indigo)
+                            .background(buttonBackgroundColor(for: opt))
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             .foregroundStyle(.white)
                             .fontWeight(.bold)
                     }
                     .padding(.horizontal)
+                    .disabled(selectedAnswer != nil && selectedAnswer != opt && isAnswerCorrect == true)
                 }
                 
                 Spacer()
@@ -87,7 +82,7 @@ struct LanguageTrivia: View {
             loadInitialScore()
         }
     }
-
+    
     func loadInitialScore() {
         switch language.name {
         case "C":
@@ -100,16 +95,35 @@ struct LanguageTrivia: View {
             currentQuestionIndex = Int(userScores.javascript)
         default:
             currentQuestionIndex = 1
-            
-            
         }
     }
     
-    func handleAnswer(_ isCorrect: Bool) {
-        if isCorrect {
-            currentQuestionIndex += 1
-            updateUserScores()
-            try? moc.save()
+    func handleAnswer(_ selectedOption: Option) {
+        selectedAnswer = selectedOption
+        isAnswerCorrect = selectedOption.answer
+        
+        if selectedOption.answer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                currentQuestionIndex += 1
+                selectedAnswer = nil
+                isAnswerCorrect = nil
+                updateUserScores()
+                try? moc.save()
+            }
+        }
+    }
+    
+    func buttonBackgroundColor(for option: Option) -> Color {
+        if let selectedAnswer = selectedAnswer {
+            if selectedAnswer == option {
+                return isAnswerCorrect == true ? .green : .red
+            } else if isAnswerCorrect == true {
+                return .gray
+            } else {
+                return .indigo
+            }
+        } else {
+            return .indigo
         }
     }
     
@@ -123,13 +137,9 @@ struct LanguageTrivia: View {
             userScores.python = Int32(currentQuestionIndex)
         case "JavaScript":
             userScores.javascript = Int32(currentQuestionIndex)
-            
-            
         default:
             break
         }
+        
     }
 }
-
-
-
