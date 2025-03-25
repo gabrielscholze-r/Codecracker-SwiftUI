@@ -32,6 +32,12 @@
 - **Core Data** para persistência local
 - **Model-View-ViewModel (MVVM)** como padrão arquitetural
 
+## 📺 Vídeo Demonstrativo
+
+<a href="https://youtu.be/CteMBizjayQ" target="_blank">
+  <img src="https://img.shields.io/badge/Ver_Demo-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube Demo">
+</a>
+
 ## ⚙️ Instalação e Configuração
 
 ### Pré-requisitos
