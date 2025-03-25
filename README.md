@@ -30,7 +30,7 @@
 - **Swift** para lógica de negócios
 - **SwiftUI** para construção de interface
 - **Core Data** para persistência local
-- **Model-View-ViewModel (MVVM)** como padrão arquitetural
+- - **Map Kit** para localizar as origens das linguagens de programação
 
 ## 📺 Vídeo Demonstrativo
 
