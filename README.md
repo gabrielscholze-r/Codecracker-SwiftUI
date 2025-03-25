@@ -44,6 +44,6 @@
 1. **Clonar o Repositório**
 ```bash
 git clone https://github.com/seu-usuario/CodeCracker.git
-cd CodeCracker
-open CodeCracker.xcworkspace
+cd Codecracker-SwiftUI
+open codecracker.xcodeproj
 ```
